@@ -1,28 +1,11 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-
-import { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 import "./App.css";
+import { DesktopList } from "./components/DesktopList";
 
-const firebaseConfig = {
-  apikey: import.meta.env.VITE_APIKEY,
-  authDomain: import.meta.env.VITE_AUTHDOMAIN,
-  projectId: import.meta.env.VITE_PROJECTID,
-  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
-  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
-  appId: import.meta.env.VITE_APPID,
-  measurementId: import.meta.env.VITE_MEASUREMENTID,
+export const App = () => {
+  // const phone = useMediaQuery({ query: "(max-width: 600px)" });
+  // const desktop = useMediaQuery({ query: "(min-width: 601px)" });
+  // if (phone) return <DesktopList />;
+  // if (desktop) return <DesktopList />;
+  return <DesktopList />;
 };
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-function App() {
-
-  return (
-    <>
-      <div> my game</div>
-    </>
-  );
-}
-
-export default App;
