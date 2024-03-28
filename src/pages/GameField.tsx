@@ -35,11 +35,11 @@ export const GameField = () => {
   return (
     <div className="box">
       <div className="group">
-        <button className="d0"> детство</button>
+        <button className="d0">детство</button>
         <button
           className="d1"
           onClick={() => {
-            handlePress(1, 1);
+            handlePress(1, 10);
           }}
         >
           10
@@ -47,7 +47,7 @@ export const GameField = () => {
         <button
           className=" d2"
           onClick={() => {
-            handlePress(1, 2);
+            handlePress(1, 20);
           }}
         >
           20
@@ -55,7 +55,7 @@ export const GameField = () => {
         <button
           className=" d3"
           onClick={() => {
-            handlePress(1, 3);
+            handlePress(1, 30);
           }}
         >
           30
@@ -63,7 +63,7 @@ export const GameField = () => {
         <button
           className=" d4"
           onClick={() => {
-            handlePress(1, 4);
+            handlePress(1, 40);
           }}
         >
           40
@@ -74,7 +74,7 @@ export const GameField = () => {
         <button
           className="l1"
           onClick={() => {
-            handlePress(2, 1);
+            handlePress(2, 10);
           }}
         >
           10
@@ -82,7 +82,7 @@ export const GameField = () => {
         <button
           className="l2"
           onClick={() => {
-            handlePress(2, 2);
+            handlePress(2, 20);
           }}
         >
           20
@@ -90,7 +90,7 @@ export const GameField = () => {
         <button
           className="l3"
           onClick={() => {
-            handlePress(2, 3);
+            handlePress(2, 30);
           }}
         >
           30
@@ -98,7 +98,7 @@ export const GameField = () => {
         <button
           className="l4"
           onClick={() => {
-            handlePress(2, 4);
+            handlePress(2, 40);
           }}
         >
           40
@@ -110,7 +110,7 @@ export const GameField = () => {
         <button
           className="r1"
           onClick={() => {
-            handlePress(3, 1);
+            handlePress(3, 10);
           }}
         >
           10
@@ -118,7 +118,7 @@ export const GameField = () => {
         <button
           className="r2"
           onClick={() => {
-            handlePress(3, 2);
+            handlePress(3, 20);
           }}
         >
           20
@@ -126,7 +126,7 @@ export const GameField = () => {
         <button
           className="r3"
           onClick={() => {
-            handlePress(3, 3);
+            handlePress(3, 30);
           }}
         >
           30
@@ -134,7 +134,7 @@ export const GameField = () => {
         <button
           className="r4"
           onClick={() => {
-            handlePress(3, 4);
+            handlePress(3, 40);
           }}
         >
           40
