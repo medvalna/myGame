@@ -3,37 +3,20 @@ import "../components/App.css";
 import "./GameField.css";
 import "./Question.css";
 import { useEffect, useState } from "react";
-import { firebase } from "../initFirebase";
+import { getData } from "../hooks/getData";
+
 export const Question = () => {
+  //const get = getData();
   const location = useLocation();
   const theme = location.state.theme;
-  const themeStr = theme === 1 ? "детство" : theme === 2 ? "жизнь" : "разное";
-  const themeStrEng = theme === 1 ? "childhood" : theme === 2 ? "life" : "mix";
   const questionNumber = location.state.question;
+  const themeStr = theme === 1 ? "детство" : theme === 2 ? "жизнь" : "разное";
+
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [showAnswer, setShowAnswer] = useState(false);
   // var question = "";
   // var answer = "";
-  function getData() {
-    const db = firebase.firestore();
-    var questionsRef = db
-      .collection("questions")
-      .where("theme", "==", themeStrEng);
-    questionsRef
-      .where("cost", "==", questionNumber)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          setQuestion(doc.data().text);
-          setAnswer(doc.data().answer);
-          console.log(question, answer);
-        });
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-  }
 
   function myFunction_set() {
     var r = document.querySelector<HTMLElement>(":root");
@@ -49,12 +32,17 @@ export const Question = () => {
   }
   useEffect(() => {
     myFunction_set();
-    //getData();
   });
+  async function saveData() {
+    const values = await getData(theme, questionNumber);
+    setAnswer(values.answer);
+    setQuestion(values.question);
+    console.log("there: ", answer, question);
+  }
   return (
     <>
       <button
-        onClick={getData}
+        onClick={saveData}
         style={{
           backgroundColor:
             theme === 1 ? "#95DCDB" : theme === 2 ? "#95B7DC" : "#9A95DC",
@@ -72,10 +60,22 @@ export const Question = () => {
           <h1>
             {themeStr} {questionNumber}
           </h1>
-          <p>{question}</p>
-          <p>{answer}</p>
         </div>
-        <div></div>
+        <button
+          onClick={() => {
+            setShowAnswer(!showAnswer);
+          }}
+          style={{
+            backgroundColor:
+              theme === 1 ? "#95DCDB" : theme === 2 ? "#95B7DC" : "#9A95DC",
+          }}
+        >
+          show Answer
+        </button>
+        <div>
+          <p>{question}</p>
+          <p>{showAnswer ? answer : ""}</p>
+        </div>
       </div>
     </>
   );
