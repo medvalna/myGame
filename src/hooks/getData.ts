@@ -1,6 +1,5 @@
-﻿import { DocumentData } from "@firebase/firestore";
-import { firebase } from "../initFirebase";
-export const getData = async (
+﻿import { firebase } from "../initFirebase";
+export const getQuestion = async (
   theme: number,
   questionNumber: number
 ): Promise<{ question: string; answer: string }> => {

@@ -3,7 +3,7 @@ import "../components/App.css";
 import "./GameField.css";
 import "./Question.css";
 import { useEffect, useState } from "react";
-import { getData } from "../hooks/getData";
+import { getQuestion } from "../hooks/getData";
 
 export const Question = () => {
   //const get = getData();
@@ -34,7 +34,7 @@ export const Question = () => {
     myFunction_set();
   });
   async function saveData() {
-    const values = await getData(theme, questionNumber);
+    const values = await getQuestion(theme, questionNumber);
     setAnswer(values.answer);
     setQuestion(values.question);
     console.log("there: ", answer, question);
