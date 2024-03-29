@@ -4,6 +4,7 @@ import "./GameField.css";
 import "./Question.css";
 import { useEffect, useState } from "react";
 import { getQuestion } from "../hooks/getData";
+import { useCountdown } from "../hooks/useCountdown";
 
 export const Question = () => {
   //const get = getData();
@@ -15,11 +16,13 @@ export const Question = () => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
-  // var question = "";
-  // var answer = "";
+
+  const { time, setStartTimer, startTimer } = useCountdown(13 * 1000, () =>
+    setShowAnswer(true)
+  );
 
   function myFunction_set() {
-    var r = document.querySelector<HTMLElement>(":root");
+    const r = document.querySelector<HTMLElement>(":root");
     if (r) {
       if (theme === 1) {
         r.style.setProperty("--background", "#DAF3F2");
@@ -30,9 +33,10 @@ export const Question = () => {
       }
     }
   }
+
   useEffect(() => {
     myFunction_set();
-  });
+  }, []);
   async function saveData() {
     const values = await getQuestion(theme, questionNumber);
     setAnswer(values.answer);
@@ -72,10 +76,22 @@ export const Question = () => {
         >
           show Answer
         </button>
+        <button
+          onClick={() => {
+            setStartTimer(true);
+          }}
+          style={{
+            backgroundColor:
+              theme === 1 ? "#95DCDB" : theme === 2 ? "#95B7DC" : "#9A95DC",
+          }}
+        >
+          start timer
+        </button>
         <div>
           <p>{question}</p>
           <p>{showAnswer ? answer : ""}</p>
         </div>
+        <h1>{startTimer ? time : null}</h1>
       </div>
     </>
   );
