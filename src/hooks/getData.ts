@@ -28,7 +28,7 @@ export const getQuestion = async (
 };
 
 export const getThemes = async (): Promise<Array<string>> => {
-  var themes = [] as string[];
+  const themes: string[] = [];
   const db = firebase.firestore();
   const questionsRef = db.collection("themes");
 
