@@ -1,4 +1,5 @@
-﻿import { firebase } from "../initFirebase";
+﻿import { DocumentData } from "@firebase/firestore";
+import { firebase } from "../initFirebase";
 export const getData = async (
   theme: number,
   questionNumber: number
@@ -21,6 +22,23 @@ export const getData = async (
       console.log("here: ", answer, question);
     });
     return { question, answer };
+  } catch (error) {
+    console.log("Error getting documents: ", error);
+    throw error;
+  }
+};
+
+export const getThemes = async (): Promise<Array<string>> => {
+  var themes = [] as string[];
+  const db = firebase.firestore();
+  const questionsRef = db.collection("themes");
+
+  try {
+    const querySnapshot = await questionsRef.get();
+    querySnapshot.forEach((doc) => {
+      themes.push(doc.data().title);
+    });
+    return themes;
   } catch (error) {
     console.log("Error getting documents: ", error);
     throw error;

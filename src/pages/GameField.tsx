@@ -1,7 +1,8 @@
 ﻿import { useNavigate } from "react-router-dom";
 import "../components/App.css";
 import "./GameField.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getThemes } from "../hooks/getData";
 export const GameField = () => {
   const navigate = useNavigate();
   function handlePress(theme: number, question: number) {
@@ -9,31 +10,28 @@ export const GameField = () => {
     navigate("/question", { state: data });
   }
 
-  // Create a function for getting a variable value
-  // function myFunction_get() {
-  //   // Get the styles (properties and values) for the root
-  //   var rs = getComputedStyle(r!);
-  //   // Alert the value of the --blue variable
-  //   alert(
-  //     "The value of --background is: " + rs.getPropertyValue("--background")
-  //   );
-  // }
-  //console.log(myFunction_get());
-  // Create a function for setting a variable value
   function myFunction_set() {
-    // Set the value of variable --blue to another value (in this case "lightblue")
-    // var r = document.querySelector(":root")  as HTMLCollectionOf<HTMLElement>;
     var r = document.querySelector<HTMLElement>(":root");
     if (r) {
       r.style.setProperty("--background", "#f1fafa");
     }
   }
+  const [themeList, setThemeList] = useState([""]);
+  async function loadThemes() {
+    const values = await getThemes();
+    setThemeList(values);
+    console.log(values);
+  }
   useEffect(() => {
     // Update the document title using the browser API
     myFunction_set();
   });
+  useEffect(() => {
+    loadThemes();
+  }, [themeList]);
   return (
     <div className="box">
+      <ul>{themeList}</ul>
       <div className="group">
         <button className="d0">детство</button>
         <button
