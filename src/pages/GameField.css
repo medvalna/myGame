@@ -1,13 +1,21 @@
-﻿.box {
+﻿.titles {
+  display: flex;
+  flex-direction: row;
+}
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+.box {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .group {
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
   padding: 10px;
   width: 30%;

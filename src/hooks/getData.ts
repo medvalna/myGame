@@ -43,3 +43,34 @@ export const getThemes = async (): Promise<Array<string>> => {
     throw error;
   }
 };
+export const getQuestionsArr = async (
+  theme: string
+): Promise<{
+  questions: Array<string>;
+  cost: Array<number>;
+  answers: Array<string>;
+}> => {
+  const questions: string[] = [];
+  const cost: number[] = [];
+  const answers: string[] = [];
+  const db = firebase.firestore();
+  console.log("theme:", theme);
+  const questionsRef = db
+    .collection("questions")
+    .where("theme", "==", theme)
+    .orderBy("cost");
+
+  try {
+    const querySnapshot = await questionsRef.get();
+    querySnapshot.forEach((doc) => {
+      questions.push(doc.data().text);
+      cost.push(doc.data().cost);
+      answers.push(doc.data().answer);
+    });
+    // console.log("loading", questions);
+    return { questions, cost, answers };
+  } catch (error) {
+    console.log("Error getting documents: ", error);
+    throw error;
+  }
+};

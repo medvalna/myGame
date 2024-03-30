@@ -3,7 +3,6 @@ import "../components/App.css";
 import "./GameField.css";
 import "./Question.css";
 import { useEffect, useState } from "react";
-import { getQuestion } from "../hooks/getData";
 import { useCountdown } from "../hooks/useCountdown";
 
 export const Question = () => {
@@ -11,10 +10,7 @@ export const Question = () => {
   const location = useLocation();
   const theme = location.state.theme;
   const questionNumber = location.state.question;
-  const themeStr = theme === 1 ? "детство" : theme === 2 ? "жизнь" : "разное";
 
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
 
   const { time, setStartTimer, startTimer } = useCountdown(13 * 1000, () =>
@@ -24,9 +20,9 @@ export const Question = () => {
   function myFunction_set() {
     const r = document.querySelector<HTMLElement>(":root");
     if (r) {
-      if (theme === 1) {
+      if (theme === "детство") {
         r.style.setProperty("--background", "#DAF3F2");
-      } else if (theme == 2) {
+      } else if (theme == "жизнь") {
         r.style.setProperty("--background", "#DAE6F3");
       } else {
         r.style.setProperty("--background", "#DCDAF3");
@@ -37,15 +33,15 @@ export const Question = () => {
   useEffect(() => {
     myFunction_set();
   }, []);
-  async function saveData() {
-    const values = await getQuestion(theme, questionNumber);
-    setAnswer(values.answer);
-    setQuestion(values.question);
-    console.log("there: ", answer, question);
-  }
+  // async function saveData() {
+  //   const values = await getQuestion(theme, questionNumber);
+  //   setAnswer(values.answer);
+  //   setQuestion(values.question);
+  //   console.log("there: ", answer, question);
+  // }
   return (
     <>
-      <button
+      {/* <button
         onClick={saveData}
         style={{
           backgroundColor:
@@ -53,7 +49,7 @@ export const Question = () => {
         }}
       >
         Start
-      </button>
+      </button> */}
       <div
         className="container"
         style={{
@@ -62,7 +58,7 @@ export const Question = () => {
       >
         <div className="title">
           <h1>
-            {themeStr} {questionNumber}
+            {theme} {questionNumber}
           </h1>
         </div>
         <button
@@ -88,8 +84,8 @@ export const Question = () => {
           start timer
         </button>
         <div>
-          <p>{question}</p>
-          <p>{showAnswer ? answer : ""}</p>
+          <p>{location.state.question}</p>
+          <p>{showAnswer ? location.state.answer : ""}</p>
         </div>
         <h1>{startTimer ? time : null}</h1>
       </div>
