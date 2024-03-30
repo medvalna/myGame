@@ -1,4 +1,7 @@
-﻿.titles {
+﻿body {
+  background-color: #f1fafa;
+}
+.titles {
   display: flex;
   flex-direction: row;
 }

@@ -1,5 +1,4 @@
-﻿import { useNavigate } from "react-router-dom";
-import "../components/App.css";
+﻿import "../components/App.css";
 import "./GameField.css";
 import { useEffect, useState } from "react";
 import { getThemes } from "../hooks/getData";
@@ -11,11 +10,18 @@ export const GameField = () => {
     setThemeList(values);
     console.log(values);
   }
-
+  function myFunction_set() {
+    const r = document.querySelector<HTMLElement>(":root");
+    if (r) {
+      r.style.setProperty("--background", "#DAF3F2");
+    }
+  }
   useEffect(() => {
     loadThemes();
   }, []);
-
+  useEffect(() => {
+    myFunction_set();
+  });
   const listItems = themeList.map((themeList, index) => (
     <ThemeList title={themeList} key={index} />
   ));
