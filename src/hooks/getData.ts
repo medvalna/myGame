@@ -49,10 +49,14 @@ export const getQuestionsArr = async (
   questions: Array<string>;
   cost: Array<number>;
   answers: Array<string>;
+  uuid: Array<string>;
+  asked: Array<boolean>;
 }> => {
   const questions: string[] = [];
   const cost: number[] = [];
   const answers: string[] = [];
+  const uuid: string[] = [];
+  const asked: boolean[] = [];
   const db = firebase.firestore();
   console.log("theme:", theme);
   const questionsRef = db
@@ -66,9 +70,44 @@ export const getQuestionsArr = async (
       questions.push(doc.data().text);
       cost.push(doc.data().cost);
       answers.push(doc.data().answer);
+      uuid.push(doc.data().uid);
+      asked.push(doc.data().asked);
+      console.log(asked);
     });
     // console.log("loading", questions);
-    return { questions, cost, answers };
+    return { questions, cost, answers, uuid, asked };
+  } catch (error) {
+    console.log("Error getting documents: ", error);
+    throw error;
+  }
+};
+
+export const updateDB = async (
+  uuid: string,
+  answer: string,
+  question: string,
+  theme: string,
+  cost: number
+) => {
+  const db = firebase.firestore();
+  const postData = {
+    uid: uuid,
+    answer: answer,
+    question: question,
+    theme: theme,
+    cost: cost,
+    asked: true,
+  };
+
+  var updates = {};
+  const path = "/questions/" + uuid;
+  updates = { path: postData };
+  try {
+    const querySnapshot = await db
+      .collection("questions")
+      .doc(uuid)
+      .update(postData);
+    console.log("loading", postData.asked);
   } catch (error) {
     console.log("Error getting documents: ", error);
     throw error;

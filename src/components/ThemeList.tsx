@@ -10,12 +10,16 @@ export const ThemeList = (prop: ThemeListProps) => {
   const [questions, setQuestions] = useState<string[]>([]);
   const [cost, setCost] = useState<number[]>([]);
   const [answers, setAnswer] = useState<string[]>([]);
+  const [uuid, setUuid] = useState<string[]>([]);
+  const [asked, setAsked] = useState<boolean[]>([]);
 
   async function loadQuestions() {
     const state = await getQuestionsArr(prop.title);
     setQuestions(state.questions);
     setCost(state.cost);
     setAnswer(state.answers);
+    setUuid(state.uuid);
+    setAsked(state.asked);
     console.log(state);
   }
   useEffect(() => {
@@ -28,6 +32,8 @@ export const ThemeList = (prop: ThemeListProps) => {
       cost={cost[index]}
       answer={answers[index]}
       theme={prop.title}
+      uuid={uuid[index]}
+      asked={asked[index]}
     />
   ));
   return (

@@ -4,6 +4,7 @@ import "./GameField.css";
 import "./Question.css";
 import { useEffect, useState } from "react";
 import { useCountdown } from "../hooks/useCountdown";
+import { updateDB } from "../hooks/getData";
 
 export const Question = () => {
   //const get = getData();
@@ -12,9 +13,11 @@ export const Question = () => {
   const questionNumber = location.state.cost;
   const question = location.state.question;
   const answer = location.state.answer;
+  const cost = location.state.cost;
+  const uuid = location.state.uuid;
   const [showAnswer, setShowAnswer] = useState(false);
 
-  const { time, setStartTimer, startTimer } = useCountdown(60 * 1000, () =>
+  const { time, setStartTimer, startTimer } = useCountdown(5 * 1000, () =>
     setShowAnswer(true)
   );
 
@@ -35,6 +38,10 @@ export const Question = () => {
     myFunction_set();
     setStartTimer(true);
   }, []);
+
+  useEffect(() => {
+    updateDB(uuid, answer, question, theme, cost);
+  }, [showAnswer]);
 
   return (
     <>

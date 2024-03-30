@@ -32,7 +32,10 @@ button {
   margin-left: 1vw;
   margin-right: 1vw;
 }
-
+.del {
+  background-color: #daf3f2;
+  border-color: #194d4c;
+}
 .d0 {
   background-color: #95dcdb;
   text-decoration-color: #194d4c;

@@ -6,6 +6,8 @@ interface QuestionProps {
   cost: number;
   answer: string;
   theme: string;
+  uuid: string;
+  asked: boolean;
 }
 export const Card = (prop: QuestionProps) => {
   const navigate = useNavigate();
@@ -15,12 +17,13 @@ export const Card = (prop: QuestionProps) => {
       question: prop.question,
       answer: prop.answer,
       cost: prop.cost,
+      uuid: prop.uuid,
     };
     navigate("/question", { state: data });
   }
   return (
     <button
-      className="d0"
+      className={prop.asked ? "del" : "d0"}
       onClick={() => {
         handlePress();
       }}
