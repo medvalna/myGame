@@ -39,7 +39,7 @@ export const Question = () => {
   return (
     <>
       <div className="texts">
-        <div className="header">
+        <div className="buttons">
           <div
             className="title"
             style={{
@@ -55,24 +55,8 @@ export const Question = () => {
               {theme} {questionNumber}
             </h2>
           </div>
-          <button
-            className="timebtn"
-            onClick={() => {
-              setStartTimer(!startTimer);
-            }}
-            style={{
-              backgroundColor:
-                theme === "детство"
-                  ? "#95DCDB"
-                  : theme === "жизнь"
-                  ? "#95B7DC"
-                  : "#9A95DC",
-            }}
-          >
-            start timer
-          </button>
           <div
-            className="timer"
+            className="header"
             style={{
               backgroundColor:
                 theme === "детство"
@@ -82,29 +66,43 @@ export const Question = () => {
                   : "#9A95DC",
             }}
           >
-            <h2>{startTimer ? time : "Timer"}</h2>
+            <button
+              className="timebtn"
+              onClick={() => {
+                setStartTimer(!startTimer);
+              }}
+              style={{
+                backgroundColor:
+                  theme === "детство"
+                    ? "#95DCDB"
+                    : theme === "жизнь"
+                    ? "#95B7DC"
+                    : "#9A95DC",
+              }}
+            >
+              start timer
+            </button>
+            <div
+              className="timer"
+              style={{
+                backgroundColor:
+                  theme === "детство"
+                    ? "#95DCDB"
+                    : theme === "жизнь"
+                    ? "#95B7DC"
+                    : "#9A95DC",
+              }}
+            >
+              <h2>{startTimer ? time : "Timer"}</h2>
+            </div>
           </div>
         </div>
 
         <div className="question">
           <h1>{question}</h1>
+
+          <h1>{showAnswer ? answer : "Answer"}</h1>
         </div>
-      </div>
-
-      {/* <button
-          onClick={() => {
-            setShowAnswer(!showAnswer);
-          }}
-          style={{
-            backgroundColor:
-              theme === 1 ? "#95DCDB" : theme === 2 ? "#95B7DC" : "#9A95DC",
-          }}
-        >
-          show Answer
-        </button> */}
-
-      <div>
-        <h1>{showAnswer ? answer : "Answer"}</h1>
       </div>
     </>
   );

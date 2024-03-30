@@ -1,6 +1,7 @@
 ﻿.title {
   display: flex;
-  width: fit-content;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   border: 1px solid transparent;
   padding-left: 10px;
@@ -26,15 +27,25 @@ body {
   padding-top: 5px;
   padding-bottom: 5px;
   max-width: 50vw;
+  flex-direction: row;
 }
 .texts {
   display: flex;
   flex-direction: column;
 }
 
-.timer {
+.buttons {
+  width: 200px;
+}
+.header {
   display: flex;
-  width: 100px;
+  flex-direction: row;
+  align-items: center;
+  height: max-content;
+  width: 100%;
+
+  display: flex;
+
   text-align: center;
   justify-content: center;
   border-radius: 10px;
@@ -42,23 +53,22 @@ body {
   padding: 10px;
   margin: 10px;
 }
-.header {
-  display: flex;
-  flex-direction: row;
-}
 .timebtn {
   display: flex;
   width: fit-content;
-  height: 100px;
+  height: 100%;
   border-radius: 10px;
   border: 1px solid transparent;
   padding-left: 10px;
   padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   text-align: center;
   justify-content: center;
   align-items: center;
   font-weight: bold;
+}
+
+.answer {
+  display: flex;
 }
