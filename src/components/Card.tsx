@@ -14,6 +14,7 @@ export const Card = (prop: QuestionProps) => {
       theme: prop.theme,
       question: prop.question,
       answer: prop.answer,
+      cost: prop.cost,
     };
     navigate("/question", { state: data });
   }
