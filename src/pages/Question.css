@@ -16,8 +16,26 @@
 body {
   background-color: var(--background);
 }
+.answerbtn {
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
 
 .question {
+  position: absolute;
+  top: 100px;
+  left: 600px;
   display: inline-block;
   justify-content: flex-start;
   border-radius: 10px;
@@ -27,6 +45,7 @@ body {
   padding-top: 5px;
   padding-bottom: 5px;
   max-width: 50vw;
+  width: 100%;
   flex-direction: row;
 }
 .texts {
@@ -35,7 +54,10 @@ body {
 }
 
 .buttons {
-  width: 200px;
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  width: 300px;
 }
 .header {
   display: flex;

@@ -87,16 +87,17 @@ export const updateDB = async (
   answer: string,
   question: string,
   theme: string,
-  cost: number
+  cost: number,
+  asked: boolean
 ) => {
   const db = firebase.firestore();
   const postData = {
     uid: uuid,
     answer: answer,
-    question: question,
+    text: question,
     theme: theme,
     cost: cost,
-    asked: true,
+    asked: !asked,
   };
 
   var updates = {};

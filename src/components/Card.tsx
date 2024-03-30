@@ -18,6 +18,7 @@ export const Card = (prop: QuestionProps) => {
       answer: prop.answer,
       cost: prop.cost,
       uuid: prop.uuid,
+      asked: prop.asked,
     };
     navigate("/question", { state: data });
   }

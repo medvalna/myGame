@@ -15,9 +15,10 @@ export const Question = () => {
   const answer = location.state.answer;
   const cost = location.state.cost;
   const uuid = location.state.uuid;
+  const asked = location.state.asked;
   const [showAnswer, setShowAnswer] = useState(false);
 
-  const { time, setStartTimer, startTimer } = useCountdown(5 * 1000, () =>
+  const { time, setStartTimer, startTimer } = useCountdown(60 * 1000, () =>
     setShowAnswer(true)
   );
 
@@ -40,7 +41,8 @@ export const Question = () => {
   }, []);
 
   useEffect(() => {
-    updateDB(uuid, answer, question, theme, cost);
+    console.log(asked);
+    updateDB(uuid, answer, question, theme, cost, asked);
   }, [showAnswer]);
 
   return (
@@ -62,6 +64,37 @@ export const Question = () => {
               {theme} {questionNumber}
             </h2>
           </div>
+          {theme === "музыка" ? null : (
+            <div
+              className="header"
+              style={{
+                backgroundColor:
+                  theme === "детство"
+                    ? "#95DCDB"
+                    : theme === "жизнь"
+                    ? "#95B7DC"
+                    : "#9A95DC",
+              }}
+            >
+              <button
+                className="answerbtn"
+                onClick={() => {
+                  setShowAnswer(!showAnswer);
+                }}
+                style={{
+                  backgroundColor:
+                    theme === "детство"
+                      ? "#95DCDB"
+                      : theme === "жизнь"
+                      ? "#95B7DC"
+                      : "#9A95DC",
+                }}
+              >
+                Show Answer
+              </button>
+            </div>
+          )}
+
           <div
             className="header"
             style={{
@@ -76,7 +109,9 @@ export const Question = () => {
             <button
               className="timebtn"
               onClick={() => {
-                setStartTimer(!startTimer);
+                theme === "музыка"
+                  ? setShowAnswer(!showAnswer)
+                  : setStartTimer(!startTimer);
               }}
               style={{
                 backgroundColor:
@@ -87,28 +122,30 @@ export const Question = () => {
                     : "#9A95DC",
               }}
             >
-              start timer
+              {theme === "музыка" ? "Show Answer" : "start timer"}
             </button>
-            <div
-              className="timer"
-              style={{
-                backgroundColor:
-                  theme === "детство"
-                    ? "#95DCDB"
-                    : theme === "жизнь"
-                    ? "#95B7DC"
-                    : "#9A95DC",
-              }}
-            >
-              <h2>{startTimer ? time : "Timer"}</h2>
-            </div>
+            {theme === "музыка" ? null : (
+              <div
+                className="timer"
+                style={{
+                  backgroundColor:
+                    theme === "детство"
+                      ? "#95DCDB"
+                      : theme === "жизнь"
+                      ? "#95B7DC"
+                      : "#9A95DC",
+                }}
+              >
+                <h2>{startTimer ? time : "Timer"}</h2>
+              </div>
+            )}
           </div>
         </div>
 
         <div className="question">
-          <h1>{question}</h1>
+          <h2>{question}</h2>
 
-          <h1>{showAnswer ? answer : "Answer"}</h1>
+          <h2>{showAnswer ? answer : "Answer"}</h2>
         </div>
       </div>
     </>
