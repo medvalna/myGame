@@ -1,6 +1,4 @@
-﻿import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-const firebaseConfig = {
+﻿export const firebaseConfig = {
   apikey: import.meta.env.VITE_APIKEY,
   authDomain: import.meta.env.VITE_AUTHDOMAIN,
   projectId: import.meta.env.VITE_PROJECTID,
@@ -9,15 +7,3 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APPID,
   measurementId: import.meta.env.VITE_MEASUREMENTID,
 };
-
-//const db = firebase.firestore();
-
-function initFirebase() {
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-}
-
-initFirebase();
-
-export { firebase };

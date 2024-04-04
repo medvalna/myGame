@@ -1,30 +1,36 @@
 ﻿import "../components/App.css";
 import "./GameField.css";
 import { useEffect, useState } from "react";
-import { getThemes } from "../hooks/getData";
+import { getThemes } from "~/api/getData";
 import { ThemeList } from "../components/ThemeList";
 export const GameField = () => {
   const [themeList, setThemeList] = useState<string[]>([]);
+
   async function loadThemes() {
     const values = await getThemes();
     setThemeList(values);
     console.log(values);
   }
-  function myFunction_set() {
+
+  function changeBgColor() {
     const r = document.querySelector<HTMLElement>(":root");
     if (r) {
       r.style.setProperty("--background", "#DAF3F2");
     }
   }
+
   useEffect(() => {
     loadThemes();
   }, []);
+
   useEffect(() => {
-    myFunction_set();
+    changeBgColor();
   });
+
   const listItems = themeList.map((themeList, index) => (
     <ThemeList title={themeList} key={index} />
   ));
+
   return (
     <>
       <div className="box">
