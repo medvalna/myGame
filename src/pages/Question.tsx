@@ -18,7 +18,6 @@ export const Question = () => {
 
   const loadQuestion = async () => {
     const state = await getQuestion(id);
-    console.log("states:", state);
     setData(state);
   };
   const { time, setStartTimer, startTimer } = useCountdown(60 * 1000, () =>

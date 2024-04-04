@@ -42,7 +42,6 @@ export const getIdCostArr = async (
       uuid.push(doc.data().uid);
       asked.push(doc.data().asked);
     });
-    console.log("func cost, uuid:", cost, uuid);
     return { uuid, cost, asked };
   } catch (error) {
     console.log("Error getting documents: ", error);
@@ -62,10 +61,8 @@ export const updateDB = async ({
     uid: uuid,
     asked: !asked,
   };
-  console.log("updating", uuid);
   try {
     await db.collection("questions").doc(uuid).update(postData);
-    console.log("loading", postData.asked);
   } catch (error) {
     console.log("Error getting documents: ", error);
     throw error;
@@ -110,7 +107,6 @@ export const getQuestion = async (uuid: string) => {
   try {
     return await questionsRef.get().then((doc) => {
       if (doc.exists && doc != undefined) {
-        console.log(doc.data());
         return doc.data();
       }
     });

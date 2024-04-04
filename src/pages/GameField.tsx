@@ -9,7 +9,6 @@ export const GameField = () => {
   async function loadThemes() {
     const values = await getThemes();
     setThemeList(values);
-    console.log(values);
   }
 
   function changeBgColor() {

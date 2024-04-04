@@ -20,7 +20,6 @@ export const Card = (prop: QuestionProps) => {
       cost: prop.cost,
       uuid: prop.uuid,
     };
-    console.log("handle uuid:", prop.uuid);
     navigate(`/question/${prop.uuid}`);
   }
 
