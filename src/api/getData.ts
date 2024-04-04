@@ -1,4 +1,4 @@
-﻿import { firebase } from "../service/initFirebase";
+﻿import { firebase } from "~/service/initFirebase";
 import { QuestionClass } from "~/types/QuestionClass";
 
 export const getThemes = async (): Promise<Array<string>> => {
@@ -62,12 +62,10 @@ export const updateDB = async ({
     uid: uuid,
     asked: !asked,
   };
-
+  console.log("updating", uuid);
   try {
-    if (uuid !== undefined) {
-      await db.collection("questions").doc(uuid).update(postData);
-      console.log("loading", postData.asked);
-    }
+    await db.collection("questions").doc(uuid).update(postData);
+    console.log("loading", postData.asked);
   } catch (error) {
     console.log("Error getting documents: ", error);
     throw error;

@@ -37,9 +37,10 @@ export const Question = () => {
     changeBgColor();
     setStartTimer(true);
   }, []);
+
   useEffect(() => {
-    if (data?.uuid !== undefined) {
-      updateDB({ uuid: data.uuid, asked: data.asked });
+    if (data) {
+      updateDB({ uuid: id, asked: data?.asked });
     }
   }, [showAnswer]);
 
