@@ -3,16 +3,14 @@ import "../pages/GameField.css";
 import { getIdCostArr } from "../api/getData";
 import { useEffect, useState } from "react";
 import { Card } from "./Card";
-interface ThemeListProps {
-  title: string;
-}
-export const ThemeList = (prop: ThemeListProps) => {
+
+export const QuestionsList = ({ title }: { title: string }) => {
   const [cost, setCost] = useState<number[]>([]);
   const [uuid, setUuid] = useState<string[]>([]);
   const [asked, setAsked] = useState<boolean[]>([]);
 
   async function loadQuestions() {
-    const state = await getIdCostArr(prop.title);
+    const state = await getIdCostArr(title);
 
     setCost(state.cost);
     setUuid(state.uuid);
@@ -25,14 +23,14 @@ export const ThemeList = (prop: ThemeListProps) => {
     <Card
       key={index}
       cost={cost}
-      theme={prop.title}
+      theme={title}
       uuid={uuid[index]}
       asked={asked[index]}
     />
   ));
   return (
     <div className="col">
-      <button className="d0">{prop.title}</button>
+      <button className="d0">{title}</button>
 
       {questionsComponent}
     </div>

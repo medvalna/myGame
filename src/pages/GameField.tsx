@@ -2,7 +2,7 @@
 import "./GameField.css";
 import { useEffect, useState } from "react";
 import { getThemes } from "~/api/getData";
-import { ThemeList } from "../components/ThemeList";
+import { QuestionsList } from "../components/ThemeList";
 export const GameField = () => {
   const [themeList, setThemeList] = useState<string[]>([]);
 
@@ -28,7 +28,7 @@ export const GameField = () => {
   });
 
   const listItems = themeList.map((themeList, index) => (
-    <ThemeList title={themeList} key={index} />
+    <QuestionsList title={themeList} key={index} />
   ));
 
   return (
