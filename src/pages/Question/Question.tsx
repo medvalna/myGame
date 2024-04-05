@@ -43,6 +43,14 @@ export const Question = () => {
     }
   }, [showAnswer])
 
+  const handleShowAnswer = () => {
+    setShowAnswer(!showAnswer)
+  }
+
+  const handleStartTimer = () => {
+    setStartTimer(!startTimer)
+  }
+
   return (
     <>
       <div className="texts">
@@ -57,7 +65,7 @@ export const Question = () => {
               <button
                 className="answerbtn"
                 onClick={() => {
-                  setShowAnswer(!showAnswer)
+                  handleShowAnswer()
                 }}
               >
                 Show Answer
@@ -70,8 +78,8 @@ export const Question = () => {
               className="timebtn"
               onClick={() => {
                 data?.theme === 'музыка'
-                  ? setShowAnswer(!showAnswer)
-                  : setStartTimer(!startTimer)
+                  ? handleShowAnswer()
+                  : handleStartTimer()
               }}
             >
               {data?.theme === 'музыка' ? 'Show Answer' : 'start timer'}

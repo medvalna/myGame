@@ -3,8 +3,6 @@ import '~/pages/GameField/GameField.css'
 import { useNavigate } from 'react-router-dom'
 
 export const Card = ({
-  cost,
-  theme,
   uuid,
   asked,
 }: {
@@ -16,13 +14,6 @@ export const Card = ({
   const navigate = useNavigate()
 
   function handlePress() {
-    const data = {
-      theme: theme,
-      // question: prop.question,
-      // answer: prop.answer,
-      cost: cost,
-      uuid: uuid,
-    }
     navigate(`/question/${uuid}`)
   }
 
