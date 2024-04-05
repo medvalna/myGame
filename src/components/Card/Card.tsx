@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 export const Card = ({
   uuid,
   asked,
+  cost,
 }: {
   cost: number
   theme: string
@@ -24,7 +25,7 @@ export const Card = ({
         handlePress()
       }}
     >
-      {uuid}
+      {cost}
     </button>
   )
 }
