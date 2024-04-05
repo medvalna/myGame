@@ -1,5 +1,5 @@
 ﻿import { firebase } from "~/service/initFirebase";
-import { QuestionClass } from "~/types/QuestionClass";
+import { GameFieldQuesionClass, QuestionClass } from "~/types/QuestionClass";
 
 export const getThemes = async (): Promise<Array<string>> => {
   const themes: string[] = [];
@@ -18,31 +18,40 @@ export const getThemes = async (): Promise<Array<string>> => {
   }
 };
 
-export const getIdCostArr = async (
-  theme: string
-): Promise<{
-  uuid: Array<string>;
-  cost: Array<number>;
-  asked: Array<boolean>;
-}> => {
-  const cost: number[] = [];
-  const uuid: string[] = [];
-  const asked: boolean[] = [];
+const getConverter = {
+  toFirestore(
+    question: GameFieldQuesionClass
+  ): firebase.firestore.DocumentData {
+    return {
+      cost: question.cost,
+      asked: question.asked,
+      uid: question.uid,
+    };
+  },
+  fromFirestore(
+    snapshot: firebase.firestore.QueryDocumentSnapshot,
+    options: firebase.firestore.SnapshotOptions
+  ): GameFieldQuesionClass {
+    const data = snapshot.data(options)!;
+    return new GameFieldQuesionClass(data.cost, data.asked, data.uid);
+  },
+};
+export const getIdCostArr = async (theme: string) => {
   const db = firebase.firestore();
-
   const questionsRef = db
     .collection("questions")
     .where("theme", "==", theme)
-    .orderBy("cost");
-
+    .withConverter(getConverter);
+  const array: GameFieldQuesionClass[] = [];
   try {
     const querySnapshot = await questionsRef.get();
     querySnapshot.forEach((doc) => {
-      cost.push(doc.data().cost);
-      uuid.push(doc.data().uid);
-      asked.push(doc.data().asked);
+      if (doc.exists && doc != undefined) {
+        array.push(doc.data());
+        console.log(array);
+      }
     });
-    return { uuid, cost, asked };
+    return array;
   } catch (error) {
     console.log("Error getting documents: ", error);
     throw error;

@@ -8,3 +8,7 @@
     public uuid: string
   ) {}
 }
+
+export class GameFieldQuesionClass {
+  constructor(public cost: number, public asked: boolean, public uid: string) {}
+}

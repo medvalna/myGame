@@ -3,29 +3,24 @@ import "../pages/GameField.css";
 import { getIdCostArr } from "../api/getData";
 import { useEffect, useState } from "react";
 import { Card } from "./Card";
+import { GameFieldQuesionClass } from "~/types/QuestionClass";
 
 export const QuestionsList = ({ title }: { title: string }) => {
-  const [cost, setCost] = useState<number[]>([]);
-  const [uuid, setUuid] = useState<string[]>([]);
-  const [asked, setAsked] = useState<boolean[]>([]);
-
+  const [questions, setQuestions] = useState<GameFieldQuesionClass[]>([]);
   async function loadQuestions() {
     const state = await getIdCostArr(title);
-
-    setCost(state.cost);
-    setUuid(state.uuid);
-    setAsked(state.asked);
+    setQuestions(state);
   }
   useEffect(() => {
     loadQuestions();
   }, []);
-  const questionsComponent = cost.map((cost, index) => (
+  const questionsComponent = questions.map((questions, index) => (
     <Card
       key={index}
-      cost={cost}
+      cost={questions.cost}
       theme={title}
-      uuid={uuid[index]}
-      asked={asked[index]}
+      uuid={questions.uid}
+      asked={questions.asked}
     />
   ));
   return (
