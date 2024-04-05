@@ -1,36 +1,39 @@
-﻿import './App.css'
-import '../pages/GameField.css'
+﻿import '~/components/App/App.css'
+import '~/pages/GameField/GameField.css'
 import { useNavigate } from 'react-router-dom'
-interface QuestionProps {
-  // question: string;
+
+export const Card = ({
+  cost,
+  theme,
+  uuid,
+  asked,
+}: {
   cost: number
-  // answer: string;
   theme: string
   uuid: string
   asked: boolean
-}
-export const Card = (prop: QuestionProps) => {
+}) => {
   const navigate = useNavigate()
 
   function handlePress() {
     const data = {
-      theme: prop.theme,
+      theme: theme,
       // question: prop.question,
       // answer: prop.answer,
-      cost: prop.cost,
-      uuid: prop.uuid,
+      cost: cost,
+      uuid: uuid,
     }
-    navigate(`/question/${prop.uuid}`)
+    navigate(`/question/${uuid}`)
   }
 
   return (
     <button
-      className={prop.asked ? 'del' : 'd0'}
+      className={asked ? 'del' : 'd0'}
       onClick={() => {
         handlePress()
       }}
     >
-      {prop.uuid}
+      {uuid}
     </button>
   )
 }

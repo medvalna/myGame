@@ -1,8 +1,8 @@
-﻿import './App.css'
-import '../pages/GameField.css'
-import { getIdCostArr } from '../api/getData'
+﻿import '~/components/App/App.css'
+import '~/pages/GameField/GameField.css'
+import { getIdCostArr } from '../../api/getData'
 import { useEffect, useState } from 'react'
-import { Card } from './Card'
+import { Card } from '../Card/Card'
 import { GameFieldQuesionClass } from '~/types/QuestionClass'
 
 export const QuestionsList = ({ title }: { title: string }) => {

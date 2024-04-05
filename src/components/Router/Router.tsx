@@ -1,7 +1,7 @@
 ﻿import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { App } from './App'
-import { Question } from '../pages/Question'
-import { GameField } from '../pages/GameField'
+import { App } from '../App/App'
+import { Question } from '../../pages/Question/Question'
+import { GameField } from '../../pages/GameField/GameField'
 
 export const Router = () => {
   return (

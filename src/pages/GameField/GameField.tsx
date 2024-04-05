@@ -1,8 +1,8 @@
-﻿import '../components/App.css'
+﻿import '~/components/App/App.css'
 import './GameField.css'
 import { useEffect, useState } from 'react'
 import { getThemes } from '~/api/getData'
-import { QuestionsList } from '../components/ThemeList'
+import { QuestionsList } from '~/components/ThemeList/ThemeList'
 export const GameField = () => {
   const [themeList, setThemeList] = useState<string[]>([])
 

@@ -1,10 +1,10 @@
-﻿import { useLocation, useParams } from 'react-router-dom'
-import '../components/App.css'
-import './GameField.css'
-import './Question.css'
+﻿import { useParams } from 'react-router-dom'
+import '~/components/App/App.css'
+import '~/pages/GameField/GameField.css'
+import '~/pages/Question/Question.css'
 import { useEffect, useState } from 'react'
-import { useCountdown } from '../hooks/useCountdown'
-import { getQuestion, updateDB } from '../api/getData'
+import { useCountdown } from '~/hooks/useCountdown'
+import { getQuestion, updateDB } from '~/api/getData'
 import { QuestionClass } from '~/types/QuestionClass'
 
 export const Question = () => {
