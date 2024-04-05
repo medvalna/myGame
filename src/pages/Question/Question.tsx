@@ -4,8 +4,9 @@ import '~/pages/GameField/GameField.css'
 import '~/pages/Question/Question.css'
 import { useEffect, useState } from 'react'
 import { useCountdown } from '~/hooks/useCountdown'
-import { getQuestion, updateDB } from '~/api/getData'
+import { getQuestion } from '~/api/getQuestion'
 import { QuestionClass } from '~/types/QuestionClass'
+import { updateDB } from '~/api/updateDb'
 
 export const Question = () => {
   const { id } = useParams()
