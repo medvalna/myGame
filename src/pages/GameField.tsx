@@ -1,34 +1,34 @@
-﻿import "../components/App.css";
-import "./GameField.css";
-import { useEffect, useState } from "react";
-import { getThemes } from "~/api/getData";
-import { QuestionsList } from "../components/ThemeList";
+﻿import '../components/App.css'
+import './GameField.css'
+import { useEffect, useState } from 'react'
+import { getThemes } from '~/api/getData'
+import { QuestionsList } from '../components/ThemeList'
 export const GameField = () => {
-  const [themeList, setThemeList] = useState<string[]>([]);
+  const [themeList, setThemeList] = useState<string[]>([])
 
   async function loadThemes() {
-    const values = await getThemes();
-    setThemeList(values);
+    const values = await getThemes()
+    setThemeList(values)
   }
 
   function changeBgColor() {
-    const r = document.querySelector<HTMLElement>(":root");
+    const r = document.querySelector<HTMLElement>(':root')
     if (r) {
-      r.style.setProperty("--background", "#DAF3F2");
+      r.style.setProperty('--background', '#DAF3F2')
     }
   }
 
   useEffect(() => {
-    loadThemes();
-  }, []);
+    loadThemes()
+  }, [])
 
   useEffect(() => {
-    changeBgColor();
-  });
+    changeBgColor()
+  })
 
   const listItems = themeList.map((themeList, index) => (
     <QuestionsList title={themeList} key={index} />
-  ));
+  ))
 
   return (
     <>
@@ -36,5 +36,5 @@ export const GameField = () => {
         <ul className="titles">{listItems}</ul>
       </div>
     </>
-  );
-};
+  )
+}

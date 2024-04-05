@@ -1,47 +1,47 @@
-﻿import { useLocation, useParams } from "react-router-dom";
-import "../components/App.css";
-import "./GameField.css";
-import "./Question.css";
-import { useEffect, useState } from "react";
-import { useCountdown } from "../hooks/useCountdown";
-import { getQuestion, updateDB } from "../api/getData";
-import { QuestionClass } from "~/types/QuestionClass";
+﻿import { useLocation, useParams } from 'react-router-dom'
+import '../components/App.css'
+import './GameField.css'
+import './Question.css'
+import { useEffect, useState } from 'react'
+import { useCountdown } from '../hooks/useCountdown'
+import { getQuestion, updateDB } from '../api/getData'
+import { QuestionClass } from '~/types/QuestionClass'
 
 export const Question = () => {
-  const { id } = useParams();
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [data, setData] = useState<QuestionClass>();
+  const { id } = useParams()
+  const [showAnswer, setShowAnswer] = useState(false)
+  const [data, setData] = useState<QuestionClass>()
 
   if (!id) {
-    return null;
+    return null
   }
 
   const loadQuestion = async () => {
-    const state = await getQuestion(id);
-    setData(state);
-  };
+    const state = await getQuestion(id)
+    setData(state)
+  }
   const { time, setStartTimer, startTimer } = useCountdown(60 * 1000, () =>
-    setShowAnswer(true)
-  );
+    setShowAnswer(true),
+  )
 
   function changeBgColor() {
-    const r = document.querySelector<HTMLElement>(":root");
+    const r = document.querySelector<HTMLElement>(':root')
   }
 
   useEffect(() => {
-    loadQuestion();
-  }, []);
+    loadQuestion()
+  }, [])
 
   useEffect(() => {
-    changeBgColor();
-    setStartTimer(true);
-  }, []);
+    changeBgColor()
+    setStartTimer(true)
+  }, [])
 
   useEffect(() => {
     if (data) {
-      updateDB({ uuid: id, asked: data?.asked });
+      updateDB({ uuid: id, asked: data?.asked })
     }
-  }, [showAnswer]);
+  }, [showAnswer])
 
   return (
     <>
@@ -52,12 +52,12 @@ export const Question = () => {
               {data?.theme} {data?.cost}
             </h2>
           </div>
-          {data?.theme === "музыка" ? null : (
+          {data?.theme === 'музыка' ? null : (
             <div className="header">
               <button
                 className="answerbtn"
                 onClick={() => {
-                  setShowAnswer(!showAnswer);
+                  setShowAnswer(!showAnswer)
                 }}
               >
                 Show Answer
@@ -69,16 +69,16 @@ export const Question = () => {
             <button
               className="timebtn"
               onClick={() => {
-                data?.theme === "музыка"
+                data?.theme === 'музыка'
                   ? setShowAnswer(!showAnswer)
-                  : setStartTimer(!startTimer);
+                  : setStartTimer(!startTimer)
               }}
             >
-              {data?.theme === "музыка" ? "Show Answer" : "start timer"}
+              {data?.theme === 'музыка' ? 'Show Answer' : 'start timer'}
             </button>
-            {data?.theme === "музыка" ? null : (
+            {data?.theme === 'музыка' ? null : (
               <div className="timer">
-                <h2>{startTimer ? time : "Timer"}</h2>
+                <h2>{startTimer ? time : 'Timer'}</h2>
               </div>
             )}
           </div>
@@ -87,9 +87,9 @@ export const Question = () => {
         <div className="question">
           <h2>{data?.text}</h2>
 
-          <h2>{showAnswer ? data?.answer : "Answer"}</h2>
+          <h2>{showAnswer ? data?.answer : 'Answer'}</h2>
         </div>
       </div>
     </>
-  );
-};
+  )
+}

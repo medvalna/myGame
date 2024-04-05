@@ -1,16 +1,16 @@
-﻿import "./App.css";
-import "../pages/GameField.css";
-import { useNavigate } from "react-router-dom";
+﻿import './App.css'
+import '../pages/GameField.css'
+import { useNavigate } from 'react-router-dom'
 interface QuestionProps {
   // question: string;
-  cost: number;
+  cost: number
   // answer: string;
-  theme: string;
-  uuid: string;
-  asked: boolean;
+  theme: string
+  uuid: string
+  asked: boolean
 }
 export const Card = (prop: QuestionProps) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   function handlePress() {
     const data = {
@@ -19,18 +19,18 @@ export const Card = (prop: QuestionProps) => {
       // answer: prop.answer,
       cost: prop.cost,
       uuid: prop.uuid,
-    };
-    navigate(`/question/${prop.uuid}`);
+    }
+    navigate(`/question/${prop.uuid}`)
   }
 
   return (
     <button
-      className={prop.asked ? "del" : "d0"}
+      className={prop.asked ? 'del' : 'd0'}
       onClick={() => {
-        handlePress();
+        handlePress()
       }}
     >
       {prop.uuid}
     </button>
-  );
-};
+  )
+}
