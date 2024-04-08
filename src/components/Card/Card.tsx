@@ -1,5 +1,4 @@
-﻿import '~/components/App/App.css'
-import '~/pages/GameField/GameField.css'
+﻿import '~/components/Card/Card.css'
 import { useNavigate } from 'react-router-dom'
 
 export const Card = ({
@@ -20,7 +19,7 @@ export const Card = ({
 
   return (
     <button
-      className={asked ? 'del' : 'd0'}
+      className={asked ? 'button' : 'buttonfalse'}
       onClick={() => {
         handlePress()
       }}

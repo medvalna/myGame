@@ -1,6 +1,4 @@
 ﻿import { useParams } from 'react-router-dom'
-import '~/components/App/App.css'
-import '~/pages/GameField/GameField.css'
 import '~/pages/Question/Question.css'
 import { useEffect, useState } from 'react'
 import { useCountdown } from '~/hooks/useCountdown'

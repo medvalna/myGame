@@ -1,5 +1,4 @@
-﻿import '~/components/App/App.css'
-import '~/pages/GameField/GameField.css'
+﻿import '~/components/ThemeList/ThemeList.css'
 import { getIdCostArr } from '~/api/getArray'
 import { useEffect, useState } from 'react'
 import { Card } from '~/components/Card/Card'
@@ -28,7 +27,7 @@ export const QuestionsList = ({ title }: { title: string }) => {
   ))
   return (
     <div className="col">
-      <button className="d0">{title}</button>
+      <button className="button">{title}</button>
       {questionsComponent}
     </div>
   )

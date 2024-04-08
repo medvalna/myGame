@@ -1,5 +1,5 @@
 ﻿import '~/components/App/App.css'
-import './GameField.css'
+import '~/pages/GameField/GameField.css'
 import { useEffect, useState } from 'react'
 import { getThemes } from '~/api/getThemes'
 import { QuestionsList } from '~/components/ThemeList/ThemeList'
