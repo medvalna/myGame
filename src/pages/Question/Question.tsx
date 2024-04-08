@@ -23,16 +23,11 @@ export const Question = () => {
     setShowAnswer(true),
   )
 
-  function changeBgColor() {
-    const r = document.querySelector<HTMLElement>(':root')
-  }
-
   useEffect(() => {
     loadQuestion()
   }, [])
 
   useEffect(() => {
-    changeBgColor()
     setStartTimer(true)
   }, [])
 

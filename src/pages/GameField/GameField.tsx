@@ -10,21 +10,9 @@ export const GameField = () => {
     const values = await getThemes()
     setThemeList(values)
   }
-
-  function changeBgColor() {
-    const r = document.querySelector<HTMLElement>(':root')
-    if (r) {
-      r.style.setProperty('--background', '#DAF3F2')
-    }
-  }
-
   useEffect(() => {
     loadThemes()
   }, [])
-
-  useEffect(() => {
-    changeBgColor()
-  })
 
   const listItems = themeList.map((themeList, index) => (
     <QuestionsList title={themeList} key={index} />
